@@ -33,20 +33,20 @@ def _(pd):
 
 @app.cell
 def _(revenue_data):
-    revenue_data.to_csv('revenue_data.csv', index=False)
+    revenue_data.to_csv('data/revenue_data.csv', index=False)
     return
 
 
 @app.cell
 def _(revenue_data):
-    revenue_data.to_parquet('revenue_data.parquet', index = False)
+    revenue_data.to_parquet('data/revenue_data.parquet', index = False)
     return
 
 
 @app.cell
 def _(pd):
     print(
-        pd.read_csv('revenue_data.csv', dtype={"country": str, "city": str, "revenue": float})
+        pd.read_csv('data/revenue_data.csv', dtype={"country": str, "city": str, "revenue": float})
     )
     return
 
@@ -620,9 +620,9 @@ def _(pd):
 
 
 @app.cell
-def _(StringDtype, pd):
+def _(pd):
     revenue_data_na = pd.DataFrame({
-        'country' : pd.Series(['Netherlands', pd.NA, 'Netherlands', 'Belgium'], dtype = StringDtype()), 
+        'country' : pd.Series(['Netherlands', pd.NA, 'Netherlands', 'Belgium'], dtype = pd.StringDtype()), 
         'city': pd.Series(['Amsterdam', 'Brussels', pd.NA, 'Leuven'], dtype = str ), 
         'revenue': pd.Series([12.1, 9.2, 13.1, 8.5], dtype = float)
     })
@@ -747,9 +747,9 @@ def _(pd):
 
 
 @app.cell
-def _(StringDtype, pd):
+def _(pd):
     pd.DataFrame({
-        'country': pd.Series(['Netherlands', pd.NA], dtype = StringDtype()), 
+        'country': pd.Series(['Netherlands', pd.NA], dtype = str), 
         'date': pd.Series(['2026-01-01', '2018-02-28'], dtype = 'datetime64[ns]')
     })
     return
