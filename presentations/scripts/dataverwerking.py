@@ -51,19 +51,19 @@ def _(pd):
     return
 
 
-@app.cell
-def _(revenue_data):
-    print(
-        revenue_data.groupby('country').agg({'revenue': 'sum'}).sort_values(by='revenue', ascending=False).head(10)
-    )
-    return
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     Dataframe anatomy
     """)
+    return
+
+
+@app.cell
+def _(revenue_data):
+    print(
+        revenue_data.groupby('country').agg({'revenue': 'sum'}).sort_values(by='revenue', ascending=False).head(10)
+    )
     return
 
 
@@ -132,51 +132,9 @@ def _(mo):
     return
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    Transformatie
-    """)
-    return
-
-
 @app.cell
-def _(pd, revenue_data):
-    print(
-        revenue_data.assign(revenue_dollars = pd.col('revenue') * 1.1)
-    )
-    return
-
-
-@app.cell
-def _(pd):
-    type(pd.col('country'))
-    return
-
-
-@app.cell
-def _(pd, revenue_data):
-    print(
-        revenue_data.assign(
-            country = pd.col('country').replace({'Netherlands': 'NL'}),
-            city_is_capital = pd.col('city').map(lambda city: city == 'Amsterdam' or city == 'Brussels'),
-            important_branch = (pd.col('revenue') > 10) | pd.col('city_is_capital'),
-            revenue_rank = pd.col('revenue').rank(),
-        )
-    )
-    return
-
-
-@app.cell
-def _(pd, revenue_data):
-    print(
-        revenue_data.assign(
-            country = pd.col('country').replace({'Netherlands': 'NL'}),
-            city_is_capital = pd.col('city').isin(['Amsterdam', 'Brussels']),
-            important_branch = (pd.col('revenue') > 10) | pd.col('city_is_capital'),
-            revenue_rank = pd.col('revenue').rank(),
-        )
-    )
+def _(revenue_data):
+    print(revenue_data)
     return
 
 
@@ -213,9 +171,57 @@ def _(pd, revenue_data):
 
 
 @app.cell
+def _(pd):
+    type(pd.col('country'))
+    return
+
+
+@app.cell
 def _(revenue_data):
     print(
         revenue_data.sample(2, random_state = 42)
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Transformatie
+    """)
+    return
+
+
+@app.cell
+def _(pd, revenue_data):
+    print(
+        revenue_data.assign(revenue_dollars = pd.col('revenue') * 1.1)
+    )
+    return
+
+
+@app.cell
+def _(pd, revenue_data):
+    print(
+        revenue_data.assign(
+            country = pd.col('country').replace({'Netherlands': 'NL'}),
+            city_is_capital = pd.col('city').map(lambda city: city == 'Amsterdam' or city == 'Brussels'),
+            important_branch = (pd.col('revenue') > 10) | pd.col('city_is_capital'),
+            revenue_rank = pd.col('revenue').rank(),
+        )
+    )
+    return
+
+
+@app.cell
+def _(pd, revenue_data):
+    print(
+        revenue_data.assign(
+            country = pd.col('country').replace({'Netherlands': 'NL'}),
+            city_is_capital = pd.col('city').isin(['Amsterdam', 'Brussels']),
+            important_branch = (pd.col('revenue') > 10) | pd.col('city_is_capital'),
+            revenue_rank = pd.col('revenue').rank(),
+        )
     )
     return
 
@@ -309,7 +315,7 @@ def _(pd):
 
 @app.cell
 def _(pd):
-    pd.Series([1, 2.0])
+    pd.Series([1, 2.1])
     return
 
 
@@ -346,6 +352,14 @@ def _(pd):
 @app.cell
 def _(pd):
     pd.Series(['2018-09-31', '2019-01-01'], dtype='datetime64[ns]')
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Break
+    """)
     return
 
 
