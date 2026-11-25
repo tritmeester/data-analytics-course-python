@@ -178,7 +178,7 @@ def _():
 @app.cell
 def _(plt):
     def _():
-        fix, ax = plt.subplots()
+        fig, ax = plt.subplots()
         ax.scatter([1,2,3], [15.0, 20.0, 5.0])
         plt.show()
     _()
@@ -188,7 +188,7 @@ def _(plt):
 @app.cell
 def _(plt):
     def _():
-        fix, ax = plt.subplots()
+        fig, ax = plt.subplots()
         ax.plot([1,2,3], [15.0, 20.0, 5.0])
         plt.show()
     _()
@@ -198,7 +198,7 @@ def _(plt):
 @app.cell
 def _(plt):
     def _():
-        fix, ax = plt.subplots()
+        fig, ax = plt.subplots()
         ax.plot([1,2,3], [15.0, 20.0, 5.0])
         ax.scatter([1,2,3], [15.0, 20.0, 5.0])
         plt.show()
@@ -209,7 +209,7 @@ def _(plt):
 @app.cell
 def _(plt):
     def _():
-        fix, ax = plt.subplots()
+        fig, ax = plt.subplots()
 
         ax.plot([1,2,3], [15.0, 20.0, 5.0])
         ax.scatter([1,2,3], [15.0, 20.0, 5.0])
@@ -247,9 +247,9 @@ def _(plt):
     def _():
         fig, ax = plt.subplots()
 
-        ax.plot([1,2,3], [15.0, 20.0, 5.0])
+        ax.plot([1,2,3], [15.0, 20.0, 5.0] , label = "Experiment 1")
         ax.scatter([1,2,3], [15.0, 20.0, 5.0]
-                   , label = "Experiment 1")
+                   )
 
         ax.plot([1,2,3], [13.0, 18.0, 7.0])
         ax.scatter([1,2,3], [13.0, 18.0, 7.0]
@@ -356,25 +356,6 @@ def _(penguin_df, plt, sns):
 def _(penguin_df, plt, sns):
     def _():
 
-        graph = sns.relplot(
-        data=penguin_df, 
-            x="flipper_length_mm", 
-            y="bill_length_mm", 
-            hue="species", 
-        )
-
-        graph.ax.set_xlabel('Flipper lengte (mm)')
-        graph.ax.set_ylabel('Snavel lengte lengte (mm)')
-
-        plt.show()
-    _()
-    return
-
-
-@app.cell
-def _(penguin_df, plt, sns):
-    def _():
-
         ax = sns.scatterplot(
         data=penguin_df, 
             x="flipper_length_mm", 
@@ -406,6 +387,25 @@ def _(penguin_df, plt, sns):
 
         ax.set_xlabel('Flipper lengte (mm)')
         ax.set_ylabel('Snavel lengte lengte (mm)')
+
+        plt.show()
+    _()
+    return
+
+
+@app.cell
+def _(penguin_df, plt, sns):
+    def _():
+
+        graph = sns.relplot(
+        data=penguin_df, 
+            x="flipper_length_mm", 
+            y="bill_length_mm", 
+            hue="species", 
+        )
+
+        graph.ax.set_xlabel('Flipper lengte (mm)')
+        graph.ax.set_ylabel('Snavel lengte lengte (mm)')
 
         plt.show()
     _()

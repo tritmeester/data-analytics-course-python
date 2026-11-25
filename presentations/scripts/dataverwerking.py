@@ -570,7 +570,7 @@ def _(yearly_data):
                     #.rename_axis(None, axis=1)
                    )
 
-    pivoted_data
+    print(pivoted_data)
     return (pivoted_data,)
 
 
@@ -720,7 +720,7 @@ def _(df, pd):
 
 @app.cell
 def _(df):
-    df.assign(large_revenue= df['revenue'] > 10)
+    df.assign(large_revenue= lambda df: df['revenue'] > 10)
     return
 
 
